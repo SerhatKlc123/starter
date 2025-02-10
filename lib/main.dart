@@ -3,7 +3,9 @@ import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
-import 'package:starter_template/screens/home.dart';
+import 'package:starter_template/app/modules/navbar/navbar_view.dart';
+import 'package:starter_template/app/routers/app_pages.dart';
+import 'package:starter_template/app/routers/app_routes.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -28,21 +30,13 @@ class MyApp extends StatelessWidget {
       splitScreenMode: true,
       builder: (ctx, child) {
         return GetMaterialApp(
-            theme: ThemeData(
-                scaffoldBackgroundColor: Colors.grey.shade50,
-                appBarTheme: const AppBarTheme(
-                    foregroundColor: Colors.white,
-                    surfaceTintColor: Colors.white,
-                    backgroundColor: Colors.white,
-                    elevation: 0)),
-            getPages: [
-              GetPage(name: "/", page: () => MyApp()),
-            ],
-            title: 'Template App',
-            debugShowCheckedModeBanner: false,
-            defaultTransition: Transition.cupertino,
-            transitionDuration: const Duration(milliseconds: 500),
-            home: Home());
+          getPages: AppPages.routes,
+          initialRoute: Routes.home,
+          title: 'Template App',
+          debugShowCheckedModeBanner: false,
+          defaultTransition: Transition.cupertino,
+          transitionDuration: const Duration(milliseconds: 500),
+        );
       },
     );
   }
